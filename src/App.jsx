@@ -1,7 +1,8 @@
-import Taskform from './Components/Taskform';
-import Tasklist from './Components/Tasklist';
-import Progresstracker from './Components/Progresstracker';
-import { useState, useEffect } from 'react';
+import Taskform from "./Components/Taskform";
+import Tasklist from "./Components/Tasklist";
+import Progresstracker from "./Components/Progresstracker";
+import { useEffect, useState } from "react";
+import "./style.css";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
@@ -15,13 +16,22 @@ export default function App() {
     setTasks([...tasks,task]);
   }
 
-  return (
+  const updateTask = (updatedTask, index) => {
+    const newtask = [...tasks];
+    newtask[index] = updatedTask;
+    setTasks(newtask);
+  }
+  const deleteTask = (index) => {
+    setTasks(tasks.filter((_, i) => i != index));
+  }
+
+  return(
     <div>
       <h1>TaskVerse</h1>
       <p>Your universe, Organized.</p>
-      <Taskform addTask={addTask}/>
-      <Tasklist/>
-      <Progresstracker/>
+      <Taskform addTask = {addTask}/>
+      <Tasklist tasks = {tasks} updateTask = {updateTask} deleteTask = {deleteTask} />
+      <Progresstracker tasks = {tasks}/>
       <button>Clear all tasks</button>
     </div>
   )
