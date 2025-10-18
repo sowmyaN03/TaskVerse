@@ -141,7 +141,7 @@ header p {
 
 .clear-btn {
   margin-top: 16px;
-  background: #e13e59;
+  background: linear-gradient(to right,#5aa7ff, #c265ff);;
   color: #ffffff;
   border: 0;
   padding: 10px 14px;
