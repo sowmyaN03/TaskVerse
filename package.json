@@ -3,18 +3,20 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sowmyaN03.githun.io/TaskVerse",
+  "homepage": "https://sowmyaN03.github.io/TaskVerse",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-    
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.546.0",
     "react": "^19.1.1",
+    "react-calendar": "^6.0.0",
     "react-dom": "^19.1.1"
   },
   "devDependencies": {

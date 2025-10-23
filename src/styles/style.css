@@ -1,0 +1,859 @@
+.progress-tracker {
+    margin: 20px 0;
+    text-align: center;
+
+}
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background:linear-gradient(to right, #e7a0ff, #e680ff);
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background:linear-gradient(to right, #2f90ff, #9dc3ff);
+    transition: width 0.3s ease;
+}
+
+#inp button {
+    background: linear-gradient(to right,#5aa7ff, #c265ff);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background:linear-gradient(to right,#95c7ff, #d493ff);
+  color: #111111;
+}
+
+.App {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  margin-bottom: 16px;
+}
+
+header h1 {
+  margin: 0 0 4px 0;
+  font-size: 28px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* adds a shadow to the text */
+  font-weight: bold; /* makes the text bold */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* sets the font family */
+  font-size: 28px;
+  text-align: center;
+  color: #8300db;
+}
+
+header p {
+  margin: 0;
+  text-align:center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  color: #0081f9;
+}
+
+.task-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+#inp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+#inp input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 14px;
+}
+
+
+#btns {
+  display: flex;
+  gap: 8px;
+}
+
+#btns select {
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.task-list li.completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.task-list button {
+  background: none;
+  border: 0;
+  color: #047857;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.clear-btn {
+  margin-top: 16px;
+  background: linear-gradient(to right,#5aa7ff, #c265ff);
+  color: #ffffff;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+/* Make the deadline input look like the Add Task button */
+.schedule-btn {
+    background: linear-gradient(to right,#5aa7ff, #c265ff);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.schedule-btn:hover {
+    background-color: #0056b3;
+}
+.task-table-container {
+  margin-top: 20px;
+  border-collapse: separate;
+  width: 100%;
+}
+
+/* Table with row radius and spacing between rows */
+.task-table {
+  width: 100%;
+  border-collapse: separate; /* Important: separate borders */
+  border-spacing: 0 8px; /* Adds the thread gap between rows */
+  background: transparent;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+/* Header styling remains same */
+.task-table thead th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+/* Each row becomes a rounded “card” */
+.task-table tbody tr {
+  background-color: #f8f7ff; /* soft light purple */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Round top and bottom of each row */
+.task-table tbody tr td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.task-table tbody tr td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.task-table tbody tr:hover {
+  background-color: rgba(220, 220, 255, 0.7);
+  transform: scale(1.01);
+}
+
+.task-table td {
+  padding: 10px 12px;
+  vertical-align: middle;
+}
+
+/* Actions column buttons */
+.actions-cell button {
+  background-color: transparent;
+  border: none;
+  color: teal;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 0.2s ease;
+}
+
+.actions-cell button:hover {
+  color: #007bff;
+}
+
+/* Completed tasks visual */
+.completed td {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+/* Make header visually match each task row */
+.task-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* gap between rows & header */
+  background-color: transparent;
+}
+
+/* Header row same style as task rows */
+.task-table thead tr {
+  background-color: #f0f0ff; /* same as row background */
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Round only header corners */
+.task-table thead th:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.task-table thead th:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Body rows styling (keep same look for all rows) */
+.task-table tbody tr {
+  background-color: #f0f0ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Round corners for each data row */
+.task-table tbody tr td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.task-table tbody tr td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Spacing inside cells */
+.task-table th, .task-table td {
+  padding: 12px 18px;
+  text-align: left;
+}
+
+/* Optional hover effect */
+.task-table tbody tr:hover {
+  background-color: #eae8ff;
+  transition: 0.2s;
+}
+ /* Priority text color based on its value */
+.task-table td.priority-high {
+  color: #e53935; /* red for high priority */
+  font-weight: 600;
+}
+
+.task-table td.priority-medium {
+  color: #f9a825; /* amber/yellow for medium priority */
+  font-weight: 600;
+}
+
+.task-table td.priority-low {
+  color: #43a047; /* green for low priority */
+  font-weight: 600;
+}
+
+/* === Custom Confirmation Popup === */
+
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.confirm-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 32px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 0px 24px rgb(135, 45, 209);
+  animation: fadeIn 0.25s ease-out;
+}
+
+.confirm-box p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.confirm-actions button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.confirm-yes {
+  background-color: #dc0707;
+  color: white;
+  box-shadow: 0px 0px 10px rgb(198, 79, 79);
+}
+
+.confirm-yes:hover {
+  background-color: #b10d0d;
+}
+
+.confirm-no {
+  background-color: #e0e0e0;
+  box-shadow: 0px 0px 10px rgb(92, 92, 92);
+}
+
+.confirm-no:hover {
+  background-color: #cfcfcf;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Priority text colors */
+.priority-high {
+  color: #e53935; /* red */
+  font-weight: 600;
+}
+.priority-medium {
+  color: #f9a825; /* amber */
+  font-weight: 600;
+}
+.priority-low {
+  color: #43a047; /* green */
+  font-weight: 600;
+}
+
+/* Table structure styling */
+.task-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  text-align: left;
+}
+
+/* Header row styling */
+.task-table thead tr {
+  background-color: #f0f0ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.task-table thead th:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.task-table thead th:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* Task rows styling */
+.task-table tbody tr {
+  background-color: #f0f0ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.task-table tbody tr td:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.task-table tbody tr td:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.task-table th,
+.task-table td {
+  padding: 12px 18px;
+}
+
+/* Buttons inside table */
+.task-actions button {
+  margin-right: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.task-actions button:first-child {
+  background-color: #4caf50;
+  color: white;
+}
+.task-actions button:first-child:hover {
+  background-color: #43a047;
+}
+.task-actions button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+.task-actions button:last-child:hover {
+  background-color: #e53935;
+}
+
+/* Completed tasks appearance */
+.completed td {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+/* Reduce text size for Due Date column */
+.task-table td:nth-child(4) {
+  font-size: 0.8rem; /* smaller text size */
+  white-space: nowrap;
+}
+.predictive-alert {
+  background: #fff7e6;
+  border: 1px solid #ffcc80;
+  box-shadow: 0px 4px 12px rgba(255, 153, 0, 0.3);
+  padding: 12px 16px;
+  margin: 15px auto;
+  width: 80%;
+  border-radius: 10px;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #8a5a00;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.predictive-alert button {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  color: #8a5a00;
+  font-weight: bold;
+}
+/* Predictive color highlights */
+.task-table tr.overdue {
+  background-color: rgba(255, 128, 105, 0.32); /* 🔴 Overdue */
+}
+
+.task-table tr.at-risk {
+  background-color: rgba(255, 214, 79, 0.434); /* 🟡 At Risk */
+}
+
+.task-table tr.on-track {
+  background-color: rgba(144, 238, 144, 0.15); /* 🟢 On Track */
+}
+
+.task-table tr {
+  transition: background-color 0.3s ease;
+}
+
+/* Confirm modal styling (if not already added) */
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirm-box {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  width: 320px;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.confirm-yes,
+.confirm-no {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.confirm-yes {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.confirm-no {
+  background-color: #ccc;
+}
+/* Focus Mode Styles */
+.focus-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.focus-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+.focus-btn:hover {
+  background-color: #45a049;
+}
+.focus-btn.active {
+  background-color: #f44336;
+}
+
+.focus-timer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.focus-timer span {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.timer-toggle,
+.timer-reset {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.timer-toggle:hover,
+.timer-reset:hover {
+  background-color: #1976d2;
+}
+.timer-reset {
+  background-color: #9c27b0;
+}
+.timer-reset:hover {
+  background-color: #7b1fa2;
+}
+
+/* Focus Report Popup */
+.confirm-box h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.confirm-box ul {
+  text-align: left;
+  margin: 10px 0;
+  padding-left: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.confirm-box ul li {
+  margin: 5px 0;
+  color: #222;
+}
+/* 🌟 Calendar View Styling */
+.task-calendar-container {
+  background: #fdfdfd;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  margin-top: 25px;
+  transition: all 0.3s ease-in-out;
+}
+
+.task-calendar-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 16px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+/* Layout */
+.calendar-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.calendar-view {
+  flex: 1 1 350px;
+  min-width: 300px;
+}
+
+.calendar-task-panel {
+  flex: 1 1 400px;
+  min-width: 300px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-task-panel h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: #444;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 6px;
+}
+
+/* Task List */
+.calendar-task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.calendar-task-item {
+  background: #f8f9fc;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background 0.2s ease;
+}
+
+.calendar-task-item:hover {
+  background: #eef3ff;
+}
+
+.calendar-task-item .task-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #222;
+}
+
+.calendar-task-item .task-category {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.calendar-task-item .task-time {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Color coding by priority */
+.priority-high {
+  border-left: 4px solid #e74c3c;
+}
+.priority-medium {
+  border-left: 4px solid #f1c40f;
+}
+.priority-low {
+  border-left: 4px solid #2ecc71;
+}
+
+/* Small indicator dot on calendar */
+.calendar-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #007bff;
+  border-radius: 50%;
+  margin: 2px auto 0;
+}
+
+/* No task message */
+.no-task-msg {
+  color: #777;
+  text-align: center;
+  font-size: 0.95rem;
+  margin-top: 12px;
+}
+
+/* React Calendar overrides */
+.react-calendar {
+  width: 100%;
+  background: #fff;
+  border: none !important;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.react-calendar__navigation button {
+  background: transparent;
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.react-calendar__navigation button:hover {
+  background: #e8f0fe;
+}
+
+.react-calendar__tile {
+  padding: 10px 0;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.react-calendar__tile--active {
+  background: #007bff !important;
+  color: white !important;
+}
+
+.react-calendar__tile:hover {
+  background: #e6f0ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .calendar-layout {
+    flex-direction: column;
+  }
+  .calendar-task-panel {
+    width: 100%;
+  }
+}
+/* ========================= */
+/* 🔹 View Toggle Buttons 🔹 */
+/* ========================= */
+
+.view-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f3f3f3;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.view-btn:hover {
+  background: linear-gradient(90deg, #a1c4fd, #c2e9fb);
+  border-color: #a1c4fd;
+  color: #222;
+  transform: translateY(-1px);
+}
+
+.view-btn.active {
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  color: white;
+  border-color: #667eea;
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
+}
+
+/* Slight tweak for spacing harmony */
+.filters-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
