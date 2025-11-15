@@ -28,7 +28,7 @@ A sleek, responsive task-management web app built with **React + Vite** that let
 
 ## 🧭 Getting Started  
 ### Prerequisites  
-- Node.js (v14 or newer recommended)  
+- React.js  
 - npm or yarn  
 
 ### Installation & Local Development  
